@@ -23,10 +23,11 @@ namespace _02_GRUD_Interface
 
         private SqlConnection connection;
         private string connectionString;
-        public SportShopDb()
+        public SportShopDb(string serverName, string DbName )
         {
-            connectionString= @"Data Source=DESKTOP-3HG9UVT\SQLEXPRESS;
-                              Initial Catalog=SportShop;
+            //DESKTOP-3HG9UVT\SQLEXPRESS   SportShop
+            connectionString = $@"Data Source={serverName};
+                              Initial Catalog={DbName};
                               Integrated Security=True;Connect Timeout=2;";
             connection = new SqlConnection(connectionString);
             connection.Open();
@@ -46,9 +47,6 @@ namespace _02_GRUD_Interface
             command.CommandTimeout = 5; // default - 30sec
 
             command.ExecuteNonQuery();
-
-
-
         }
         public List<Product> GetAll()
         {
@@ -137,13 +135,43 @@ namespace _02_GRUD_Interface
             #endregion
             return product;
         }
+        public List<Product> GetByName(string name)
+        {
+            #region Execute Reader
+            string cmdText = $@"select * from Products where Name = '{name}'";
 
+            SqlCommand command = new SqlCommand(cmdText, connection);
+
+            SqlDataReader reader = command.ExecuteReader();
+
+            Console.OutputEncoding = Encoding.UTF8;
+            List<Product> products = new List<Product>();
+
+            while (reader.Read())
+            {
+                products.Add(new Product()
+                {
+                    Id = (int)reader[0],
+                    Name = (string)reader[1],
+                    Type = (string)reader[2],
+                    Quantity = (int)reader[3],
+                    CostPrice = Convert.ToSingle(reader[4]),
+                    Producer = (string)reader[5],
+                    Price = Convert.ToSingle(reader[6])
+                });
+            }
+
+            reader.Close();
+            #endregion
+            return products;
+        }
     }
     internal class Program
     {
         static void Main(string[] args)
         {
-            SportShopDb db = new SportShopDb();
+            #region Тут я створюю SportShopDb і додаю товари в базу
+            SportShopDb db = new SportShopDb(@"DESKTOP-3HG9UVT\SQLEXPRESS", "SportShop");
             var pr = new Product()
             {
                 Name = "Lastu",
@@ -154,19 +182,30 @@ namespace _02_GRUD_Interface
                 Price = 800
             };
             //db.Create(pr);
-            //var products = db.GetAll();
-            //foreach (var product in products)
-            //{
-            //    Console.WriteLine(product.Name);
-            //}
+            var products = db.GetAll();
+            foreach (var product in products)
+            {
+                Console.WriteLine(product.Name);
+            }
 
             Product res = db.GetOne(5);
             Console.WriteLine("Product : " + res.Name);
             res.CostPrice = 3000;
             res.Price = 3500;
-            db.Update(res);
+            //db.Update(res);
 
-            db.Delete(40);
+            //db.Delete(40);
+            #endregion
+            Console.WriteLine("-----------------------------");
+            Console.WriteLine("Enter product Name to search : ");
+            string name = Console.ReadLine();
+            products = db.GetByName(name);
+            foreach (var product in products)
+            {
+                Console.WriteLine($"{product.Name} {product.Price}  {product.Producer}");
+            }
+
+
 
         }
     }
