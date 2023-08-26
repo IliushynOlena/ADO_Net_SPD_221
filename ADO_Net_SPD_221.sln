@@ -5,7 +5,9 @@ VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "01_ConnectedMode", "01_ConnectedMode\01_ConnectedMode.csproj", "{5212927E-EC62-4C31-82CE-839D8A1EB525}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "02_GRUD_Interface", "02_GRUD_Interface\02_GRUD_Interface.csproj", "{B0CA5EDD-0950-4398-98ED-0B0E63489B48}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "02_GRUD_Interface", "02_GRUD_Interface\02_GRUD_Interface.csproj", "{B0CA5EDD-0950-4398-98ED-0B0E63489B48}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "03_DisconnectedMode", "03_DisconnectedMode\03_DisconnectedMode.csproj", "{9F825EC5-11EF-494D-AF44-CA18F16476AB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{B0CA5EDD-0950-4398-98ED-0B0E63489B48}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B0CA5EDD-0950-4398-98ED-0B0E63489B48}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B0CA5EDD-0950-4398-98ED-0B0E63489B48}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F825EC5-11EF-494D-AF44-CA18F16476AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F825EC5-11EF-494D-AF44-CA18F16476AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F825EC5-11EF-494D-AF44-CA18F16476AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F825EC5-11EF-494D-AF44-CA18F16476AB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

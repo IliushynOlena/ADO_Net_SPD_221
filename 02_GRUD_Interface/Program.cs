@@ -104,7 +104,6 @@ namespace _02_GRUD_Interface
             SqlCommand command = new SqlCommand(cmdText, connection);
             command.ExecuteNonQuery();
 
-
         }
         public Product GetOne(int id)
         {
