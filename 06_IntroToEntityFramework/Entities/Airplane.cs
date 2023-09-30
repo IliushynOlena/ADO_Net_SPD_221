@@ -5,13 +5,10 @@ namespace _06_IntroToEntityFramework.Entities
 {
     public class Airplane
     {
-        //properties
-        public int Id { get; set; }//not null
-        [Required, MaxLength(100)]
-        public string Model { get; set; }//null - not null
-        public int MaxPassangers { get; set; }//not null
-        //---------------Navigation properties-----------------
-        //Relationship type
+        public int Id { get; set; }
+        public string Model { get; set; }
+        public int MaxPassangers { get; set; }
+
         public ICollection<Flight> Flights { get; set; }
     }
 }

@@ -80,6 +80,42 @@ namespace _06_IntroToEntityFramework
                      AirplaneId = 2
                 }
               });
+
+
+            //Fluent API configurations
+            modelBuilder.Entity<Airplane>()
+                .Property(a => a.Model)
+                .HasMaxLength(100)
+                .IsRequired();
+
+
+            modelBuilder.Entity<Client>().ToTable("Passangers");
+            modelBuilder.Entity<Client>().Property(C => C.Name)
+                .IsRequired()
+                .HasMaxLength(100)
+                .HasColumnName("FirstName");
+
+            modelBuilder.Entity<Client>().Property(C => C.Email)
+               .IsRequired()
+               .HasMaxLength(100);
+
+
+            modelBuilder.Entity<Flight>().HasKey(f=>f.Number);
+            modelBuilder.Entity<Flight>().Property(f => f.DepartureCity)
+               .IsRequired()
+               .HasMaxLength(100);
+            modelBuilder.Entity<Flight>().Property(f => f.ArrivalCity)
+             .IsRequired()
+             .HasMaxLength(100);
+
+            //---------------Navigation properties-----------------
+            modelBuilder.Entity<Flight>().HasMany(f => f.Clients).WithMany(c => c.Flights);
+            modelBuilder.Entity<Flight>()
+                .HasOne(f => f.Airplane)
+                .WithMany(a => a.Flights)
+                .HasForeignKey(f => f.AirplaneId);
+
+
         }
 
     }
