@@ -20,6 +20,8 @@ namespace _06_IntroToEntityFramework
                     $" to {f.ArrivalCity}");
             }
 
+            int a = 0;
+            int? b = null;
 
             //context.Clients.Add(
             //    new Client
