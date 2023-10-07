@@ -95,6 +95,9 @@ namespace _06_IntroToEntityFramework.Migrations
                         .HasColumnType("nvarchar(100)")
                         .HasColumnName("FirstName");
 
+                    b.Property<string>("Phone")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.ToTable("Passangers");
